@@ -1,0 +1,40 @@
+import java.util.*;
+import java.util.Map.Entry;
+
+class Main {
+
+    public static void main(String[] args)
+    {
+
+        String string = "prepinsta";
+        char ch = findFirstNonRepeating(string);
+            System.out.println("First non-repeating character is : " + ch);
+    }
+
+    public static Character findFirstNonRepeating(String str)
+    {
+        HashMap  charhashtable =
+                new LinkedHashMap();
+        int len;
+        Character ch;
+        len = str.length();  // Scan string and build hash table
+
+        for (int i = 0; i < len; i++)
+        {
+            ch = str.charAt(i);
+
+            if(charhashtable.containsKey(ch))
+                // increment count corresponding to ch
+                charhashtable.put(ch, charhashtable.get(ch) + 1);
+            else
+                charhashtable.put(ch , 1);
+
+        }
+        for(Entry entry: charhashtable.entrySet())
+        {
+            if(entry.getValue() == 1)
+                return entry.getKey();
+        }
+        return null;
+    }
+}
