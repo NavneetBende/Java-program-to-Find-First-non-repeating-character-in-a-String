@@ -1,0 +1,47 @@
+class Main {
+    static final int NO_OF_CHARS = 256;
+    static char count[] = new char[NO_OF_CHARS];
+
+    // this method builds count array which updates frequency for each
+    // ascii character (0-255)
+    // example for 'p' ascii value is 112, in the array
+    // count[112] value would be 2 (p appears twice)
+    static void buildCharCountArray(String str)
+    {
+        for (int i = 0; i < str.length(); i++) {
+            count[str.charAt(i)]++;
+        }
+    }
+
+    // this method finds first non repeating character
+    // returns the index of the first non repeating character
+    static int findFirstNonRepeating(String string)
+    {
+        // build char count array
+        buildCharCountArray(string);
+
+        int pos = -1, i;
+
+        for (i = 0; i < string.length(); i++) {
+            if (count[string.charAt(i)] == 1) {
+                pos = i;
+                break;
+            }
+        }
+
+        return pos;
+    }
+
+    // Driver method
+    public static void main(String[] args)
+    {
+        String string = "prepinsta";
+        int pos = findFirstNonRepeating(string);
+
+        System.out.println(
+                pos == -1
+                        ? "All characters are repeating "
+                        : "First non-repeating character is "
+                        + string.charAt(pos));
+    }
+}
