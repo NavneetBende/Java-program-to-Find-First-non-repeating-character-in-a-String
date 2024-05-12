@@ -1,0 +1,46 @@
+import java.util.*;
+
+class Main {
+
+
+    public static Character findFirstNonRepeating(String str)
+    {
+        // set stores characters that are repeating
+        Set charRepeatingSet = new HashSet<>();
+
+        // ArrayList stores characters that are non repeating
+        List charNonRepeatingList = new ArrayList<>();
+
+        for(int i=0; i < str.length(); i++)
+        {
+
+            char ch = str.charAt(i);
+
+            // if set already contains character ch
+            if(charRepeatingSet.contains(ch))
+                continue;
+
+            // if Array List contains character ch
+            // remove existing ch from ArrayList and
+            // add ch to set
+            if(charNonRepeatingList.contains(ch)) {
+                charNonRepeatingList.remove((Character) ch);
+                charRepeatingSet.add(ch);
+            }
+
+            // else add to ArrayList as character must be first occurrence
+            else {
+                charNonRepeatingList.add(ch);
+            }
+        }
+        return charNonRepeatingList.get(0);
+    }
+
+    public static void main(String[] args)
+    {
+
+        String string = "prepinsta";
+        char ch = findFirstNonRepeating(string);
+        System.out.println("The first non repeated character is :  " + ch);
+    }
+}
